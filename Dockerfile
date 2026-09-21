@@ -1,10 +1,10 @@
 # Stage 1: Builder
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
 COPY app.js ./
 
 # Stage 2: Production Image
-FROM node:20-alpine
+FROM node:22-alpine
 WORKDIR /app
 
 COPY --from=builder /app/app.js ./

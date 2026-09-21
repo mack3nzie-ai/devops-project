@@ -1,12 +1,17 @@
-const http = require('http');
+// app.js
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  // Tambahkan charset=utf-8 di akhir baris ini
-  res.setHeader('Content-Type', 'text/plain; charset=utf-8'); 
-  res.end('Halo! Ini aplikasi pertama DevOps-ku 🚀\n');
+app.get('/', (req, res) => {
+  res.send('DevSecOps Pipeline - Node.js App is Running!');
 });
 
-server.listen(3000, () => {
-  console.log('Server jalan di port 3000');
+// Endpoint untuk monitoring health status
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'UP', timestamp: new Date() });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

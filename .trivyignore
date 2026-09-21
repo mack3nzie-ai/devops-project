@@ -1,0 +1,2 @@
+# Ignore tar vulnerability in node-pkg as app does not use tar or NPM at runtime
+CVE-2026-59873

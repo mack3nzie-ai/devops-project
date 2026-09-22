@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Endpoint Utama dengan Tampilan Style MIT Editorial/Brutalist
+// Endpoint Utama (Home - MIT Style)
 app.get('/', (req, res) => {
   res.send(`
     <!DOCTYPE html>
@@ -12,15 +12,11 @@ app.get('/', (req, res) => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>MIT-Style // DevSecOps App</title>
       <style>
-        * {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
           background-color: #f4f4f0;
           color: #111111;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
           padding: 40px 20px;
           display: flex;
           justify-content: center;
@@ -44,11 +40,11 @@ app.get('/', (req, res) => {
           gap: 10px;
         }
         .brand {
-          font-family: "Georgia", "Times New Roman", serif;
+          font-family: "Georgia", serif;
           font-size: 2.2rem;
           font-weight: 900;
           letter-spacing: -1px;
-          color: #A31F34; /* MIT Signature Red */
+          color: #A31F34;
           text-transform: uppercase;
         }
         .tagline {
@@ -60,11 +56,9 @@ app.get('/', (req, res) => {
           color: #ffffff;
           padding: 4px 8px;
         }
-        .hero {
-          margin-bottom: 35px;
-        }
+        .hero { margin-bottom: 35px; }
         .hero h1 {
-          font-family: "Georgia", "Times New Roman", serif;
+          font-family: "Georgia", serif;
           font-size: 2.8rem;
           line-height: 1.1;
           margin-bottom: 15px;
@@ -175,7 +169,7 @@ app.get('/', (req, res) => {
   `);
 });
 
-// Endpoint Monitoring Health Status (Supports both HTML UI & Machine JSON)
+// Endpoint Monitoring Health Status (Dual Mode: UI & JSON)
 app.get('/health', (req, res) => {
   const healthData = {
     status: 'UP', 
@@ -183,7 +177,7 @@ app.get('/health', (req, res) => {
     uptime: `${Math.floor(process.uptime())} seconds`
   };
 
-  // Jika diakses via Browser (minta HTML), tampilkan Dashboard UI MIT
+  // Jika browser minta HTML, berikan UI
   if (req.accepts('html')) {
     return res.send(`
       <!DOCTYPE html>
@@ -285,6 +279,10 @@ app.get('/health', (req, res) => {
     `);
   }
 
-  // Jika diakses oleh Docker/Mesin (minta JSON), kirim data JSON mentah
+  // Jika diketik via Docker / API, kirim JSON
   res.status(200).json(healthData);
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

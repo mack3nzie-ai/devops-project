@@ -282,9 +282,10 @@ app.get('/health', (req, res) => {
   // Jika diketik via Docker / API, kirim JSON
   res.status(200).json(healthData);
 });
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
 
 module.exports = app;

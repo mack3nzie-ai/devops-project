@@ -287,4 +287,12 @@ if (require.main === module) {
     console.log(`Server running on port ${PORT}`);
   });
 }
+
+app.get('/about', (req,res)=> {
+  res.status(200).json({
+    app: "DevSecOps Demo App",
+    version: "1.0.0",
+    author: "Willy",
+  });
+});
 module.exports = app;

@@ -3,6 +3,8 @@ name: Build, Scan, and Push Docker Image
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 
 jobs:
@@ -15,7 +17,7 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      
+
     # --- Node.js & Automated Unit Tests ---
     - name: Setup Node.js Environment
       uses: actions/setup-node@v4

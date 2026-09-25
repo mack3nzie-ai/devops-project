@@ -1,0 +1,27 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: self-hosted 
+
+    steps:
+      - name: Stop dan Hapus Kontainer Lama (jika ada)
+        shell: powershell
+        run: |
+          docker stop my-web
+          docker rm my-web
+        continue-on-error: true
+
+      - name: Pull Image Terbaru dari GHCR
+        shell: powershell
+        run: |
+          docker pull ghcr.io/mack3nzie-ai/devops-app:latest
+
+      - name: Jalankan Kontainer Baru
+        shell: powershell
+        run: |
+          docker run -d -p 8080:3000 --name my-web ghcr.io/mack3nzie-ai/devops-app:latest

@@ -288,7 +288,7 @@ if (require.main === module) {
   });
 }
 
-app.get('/about', (req,res)=> {
+app.get('/about', (req, res) => {
   res.status(200).json({
     app: "DevSecOps Demo App",
     version: "1.0.0",

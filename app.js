@@ -279,7 +279,7 @@ app.get('/health', (req, res) => {
     `);
   }
 
-  // Jika diketik via Docker / API, kirim JSON
+  // if write JSON response send JSON
   res.status(200).json(healthData);
 });
 if (require.main === module) {

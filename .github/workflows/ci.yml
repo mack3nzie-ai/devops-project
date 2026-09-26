@@ -39,19 +39,19 @@ jobs:
       with:
         image-ref: 'devops-app:latest'
         format: 'table'
-        exit-code: '1' #Menggagalkan pipeline jika ada kerentanan CRITICAL
+        exit-code: '1' 
         ignore-unfixed: true
         vuln-type: 'library'
         severity: 'CRITICAL'
     - name: Log in to GitHub Container Registry
-      if: success() # Hanya login jika build dan scan berhasil
+      if: success() # only build if build dan scan successful
       uses: docker/login-action@v3
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Push image to GHCR
-      if: success() # only push if build dan scan berhasil
+      if: success() # only push if build dan scan successful
       run: | 
         IMAGE_ID=ghcr.io/${{ github.repository_owner }}/devops-app:latest
         IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]') # Mengubah nama image menjadi lowercase

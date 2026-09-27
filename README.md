@@ -1,5 +1,6 @@
 #   DevSecOps Automated CI/CD Pipeline & Deployment
-
+[![CI Pipeline](https://github.com/mack3nzie-ai/devops-project/actions/workflows/ci.yml/badge.svg)](https://github.com/mack3nzie-ai/devops-project/actions)
+[![CD Pipeline](https://github.com/mack3nzie-ai/devops-project/actions/workflows/cd.yml/badge.svg)](https://github.com/mack3nzie-ai/devops-project/actions)
 ![Node.js](https://img.shields.io/badge/Node.js-v22--alpine-339933?logo=node.js)
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker)
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI%2FCD-2088FF?logo=githubactions)
